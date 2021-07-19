@@ -40,13 +40,17 @@ def get_sex(x):
 
     try:
         name_table = pd.read_html(openpage.text)[0].replace('--',0)
-        if int(name_table[2][1]) > int(name_table[2][5]):
+        M = int(name_table[2][1])
+        V = int(name_table[2][5])
+        if M > V:
             sex = 'M'
-        else:
+        elif V > M:
             sex = 'V'
+        elif M == V:
+            sex = 'onbekend'
     except:
         sex = 'onbekend'
-    time.sleep(random.uniform(3,6))
+    time.sleep(random.uniform(1,2))
     return pd.Series([sex])
 
 #maak df aan met enkele voornamen
